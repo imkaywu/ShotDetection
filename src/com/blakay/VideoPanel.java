@@ -26,7 +26,7 @@ public class VideoPanel extends JPanel{
 	private JPanel dispPanel, videoPlayerPanel, videoPanel, videoControlPanel, imagePanel, imageControlPanel;
 	private JButton startB, playB, forwardB, backwardB, nextB, prevB;
 	private JLabel titleLabel, imageLabel;
-	private int ind;
+	private int ind, _keyframeSize;
 	private String _folder, _method, _colorModel, path;
 	private final EmbeddedMediaPlayerComponent mediaPlayerComponent;
 	private EmbeddedMediaPlayer embeddedMediaPlayer;
@@ -38,6 +38,7 @@ public class VideoPanel extends JPanel{
 		_colorModel = colorModel;
 		File frame_file = new File("D:/Videos/key frames/" + _folder + "/" + _method + "/" + _colorModel);
 		final File [] frames = frame_file.listFiles();
+		_keyframeSize = frames.length - 1;
 		
 		this.setSize(WIDTH, HEIGHT);
 		this.setVisible(true);
@@ -91,7 +92,7 @@ public class VideoPanel extends JPanel{
 
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				if(ind < frames.length) {
+				if(ind < _keyframeSize) {
 					ind++;
 					path = "D:/Videos/key frames/" + _folder + "/" + _method + "/" + _colorModel + "/frame_" + ind + ".jpg";
 					imageLabel.setIcon(new ImageIcon(path));
@@ -186,5 +187,10 @@ public class VideoPanel extends JPanel{
 		
 		mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
 		videoPanel.add(mediaPlayerComponent, BorderLayout.CENTER);
+	}
+	
+	public VideoPanel(String folder, String method, String colorModel, String keyframeSize) {
+		this(folder, method, colorModel);
+		_keyframeSize = Integer.parseInt(keyframeSize);
 	}
 }

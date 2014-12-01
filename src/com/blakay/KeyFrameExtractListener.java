@@ -20,14 +20,17 @@ public class KeyFrameExtractListener implements ActionListener{
 		String folder = _mainFrame.getValue(0);
 		
 		int size;
-		size = Integer.parseInt(_mainFrame.getValue(5));
+		if(_mainFrame.getValue(3) != null) {
+			size = Integer.parseInt(_mainFrame.getValue(3));
 		
-		dist = new float[size];
-		readDist(dist, folder);
+			dist = new float[size];
+			readDist(dist, folder);
+			
+			new KeyFrameExtraction(_mainFrame, dist, folder).keyFrameExtract();
+			
+			_mainFrame.updateUI(folder);
+		}
 		
-		new KeyFrameExtraction(_mainFrame, dist, folder).keyFrameExtract();
-		
-		_mainFrame.updateUI(folder);
 	}
 	
 	private void readDist(float [] dist, String folder) {

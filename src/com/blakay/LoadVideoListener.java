@@ -41,7 +41,8 @@ public class LoadVideoListener implements ActionListener{
             String path = chooser.getSelectedFile().getAbsolutePath();
             int ind = path.indexOf("frame_");
             _folder = path.substring(23, ind - 1);//23 is the start character of the folder
-            _mainFrame.setAttr(_folder, Integer.toString(_input.length - 1));
+            _mainFrame.setValue(0, _folder);
+            _mainFrame.setValue(3, Integer.toString(_input.length - 1));
        
             sortFile(_input);
             /*

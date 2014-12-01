@@ -20,7 +20,7 @@ public class KeyFrameExtraction {
 		_mainFrame = mainFrame;
 		_dist = dist;
 		_folder = folder;
-		_threshold = Float.parseFloat(mainFrame.getValue(3));
+		_threshold = Float.parseFloat(mainFrame.getValue(5));
 	}
 	
 	/*
@@ -36,6 +36,7 @@ public class KeyFrameExtraction {
 				System.out.println("" + (i + 1));
 			}
 		}
+		_mainFrame.setValue(4, Integer.toString(_ind));
 	}
 	
 	/*

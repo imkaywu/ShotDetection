@@ -33,7 +33,7 @@ public class MainFrame extends JFrame{
 	private static final int WIDTH = 740, HEIGHT = 362;
 	private static MainFrame _mainFrame;
 	private String _method = "Global Pixel2Pixel Difference", _colorModel = "YIQ";
-	private String _folder, _size;
+	private String _folder = null, _size = null, _keyframeSize;
 	private JLabel thresholdL, binL;
 	private JTextField thresholdT, binT;
 	private JButton loadVideoB, keyFrameB;
@@ -97,7 +97,7 @@ public class MainFrame extends JFrame{
 		binL = new JLabel("Bin Number: ", SwingConstants.RIGHT);
 		inputP.add(binL);
 		binT = new JTextField(SwingConstants.CENTER);
-		binT.setText("18");
+		binT.setText("16");
 		inputP.add(binT);
 	}
 	
@@ -165,8 +165,6 @@ public class MainFrame extends JFrame{
 	}
 	
 	/*
-	 * set the method and color model, used in MyMenu.class
-	 */
 	public void setValue(String method, String colorModel) {
 		_method = method;
 		if(_method.compareToIgnoreCase("Global Pixel2Pixel Difference") == 0 || _method.compareToIgnoreCase("Cumulative Pixel2Pixel Difference") == 0)
@@ -175,12 +173,27 @@ public class MainFrame extends JFrame{
 			_colorModel = colorModel;
 	}
 	
-	/*
-	 * set the value of folder and size
-	 */
 	public void setAttr(String folder, String size) {
 		_folder = folder;
 		_size = size;
+	}
+	*/
+	
+	/*
+	 * set the method and color model, used in MyMenu.class
+	 * set the value of folder and size
+	 */
+	public void setValue(int ind, String val) {
+		if(ind == 0)
+			_folder = val;
+		if(ind == 1)
+			_method = val;
+		else if(ind == 2)
+			_colorModel = val;
+		else if(ind == 3)
+			_size = val;
+		else if(ind == 4) 
+			_keyframeSize = val;
 	}
 	
 	/*
@@ -195,11 +208,13 @@ public class MainFrame extends JFrame{
 		else if(i == 2)
 			str = _colorModel;
 		else if(i == 3)
-			str = thresholdT.getText();
-		else if(i == 4)
-			str = binT.getText();
-		else if(i == 5)
 			str = _size;
+		else if(i == 4)
+			str = _keyframeSize;
+		else if(i == 5)
+			str = thresholdT.getText();
+		else if(i == 6)
+			str = binT.getText();
 		
 		return str;
 	}
@@ -208,7 +223,7 @@ public class MainFrame extends JFrame{
 	 * update the UI after adding and parsing the video, used in VideoSegmentation.class
 	 */
     public void updateUI(String new_videoName) {
-    	VideoPanel vPanel = new VideoPanel(new_videoName, _method, _colorModel);
+    	VideoPanel vPanel = new VideoPanel(new_videoName, _method, _colorModel, _keyframeSize);
     	panel.add(vPanel);
     	panel.revalidate();
 		panel.repaint();
@@ -280,7 +295,6 @@ public class MainFrame extends JFrame{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 		else {
 			FileWriter fw;

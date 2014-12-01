@@ -32,7 +32,8 @@ public class MyMenu{
     public MyMenu(MainFrame mainFrame) {
     	_mainFrame = mainFrame;
     	initMenu();
-    	_mainFrame.setValue(_method, _colorModel);
+    	_mainFrame.setValue(1, _method);
+    	_mainFrame.setValue(2, _colorModel);
     }
     
     private void initMenu() {
@@ -131,7 +132,8 @@ public class MyMenu{
 				if(button.isSelected()) {
 					_method = button.getText();
 					System.out.println(_method);
-					_mainFrame.setValue(_method, _colorModel);
+					_mainFrame.setValue(1, _method);
+			    	_mainFrame.setValue(2, _colorModel);
 				}
 			}
 		}
@@ -147,7 +149,8 @@ public class MyMenu{
 				if(button.isSelected()) {
 					_colorModel = button.getText();
 					System.out.println(_colorModel);
-					_mainFrame.setValue(_method, _colorModel);
+					_mainFrame.setValue(1, _method);
+			    	_mainFrame.setValue(2, _colorModel);
 				}
 			}
 		}

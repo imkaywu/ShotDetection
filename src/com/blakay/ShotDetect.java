@@ -18,7 +18,7 @@ public class ShotDetect implements Runnable {
 		_dist = dist;
 		_start_ind = ind;
 		_frame_num = frame_num;
-		_imageDist = new ImageDistance(mainFrame.getValue(1), mainFrame.getValue(2), Integer.parseInt(mainFrame.getValue(4)));// multi-thread?
+		_imageDist = new ImageDistance(mainFrame.getValue(1), mainFrame.getValue(2), Integer.parseInt(mainFrame.getValue(6)));// multi-thread?
 	}
 	
 	/*
