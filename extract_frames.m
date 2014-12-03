@@ -1,6 +1,6 @@
 video_dir = 'D:\Videos\videos\';
-video_name = 'scent of a woman - 3';
-video_format = '.avi';
+video_name = 'friends - 2';
+video_format = '.rm';
 dir = [video_dir, video_name, video_format];
 
 frame_dir = 'D:\Videos\video frames\';
@@ -11,9 +11,10 @@ end
 start_index = 1;
 frames_a_time = 100;
 stop_flag = 0;
+iter = 0;
 
+cd('mmread');
 while (~stop_flag)
-    cd('mmread');
     clip = mmread(dir, [start_index: start_index + frames_a_time - 1], [], false, true);
     start_index = start_index + frames_a_time;
     frames = clip.frames;
@@ -25,6 +26,8 @@ while (~stop_flag)
     end
     
     for i = 1 : number_of_frames
-        imwrite(frames(i).cdata, [frame_dir, video_name, '\frame_', num2str(i), '.jpg']);
+        imwrite(frames(i).cdata, [frame_dir, video_name, '\frame_', num2str(i + iter * frames_a_time), '.jpg']);
     end
+    iter = iter + 1;
 end
+cd('..\');
