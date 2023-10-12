@@ -6,10 +6,12 @@ Shot detection project for Visual Computing Course(EECE 570)
 For Windows Users:
 Add the following directory to the root of D disk
 
+```
 ├── Videos  
 |       ├── videos  
 |       ├── video frames  
 |       └── key frames
+```
 
 put all the video clips in the folder **videos**
 
